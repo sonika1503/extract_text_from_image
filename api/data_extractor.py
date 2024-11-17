@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 # Move configuration and constants to separate files
-from config import MONGODB_URL, OPENAI_API_KEY, load_label_reader_prompt
+from config import MONGODB_URL, OPENAI_API_KEY, load_label_reader_prompt, LABEL_READER_PROMPT
 from schemas import label_reader_schema
 
 # Initialize clients
@@ -31,13 +31,14 @@ collection = db.products
 async def extract_information(image_links: List[str]) -> Dict[str, Any]:
     try:
         image_message = [{"type": "image_url", "image_url": {"url": il}} for il in image_links]
+        load_label_reader_prompt()
         response = await openai_client.chat.completions.create(
             model="gpt-4-vision-preview",
             messages=[
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": load_label_reader_prompt()},
+                        {"type": "text", "text": LABEL_READER_PROMPT},
                         *image_message,
                     ],
                 },
