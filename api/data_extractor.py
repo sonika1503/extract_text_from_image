@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 # Move configuration and constants to separate files
-from config import MONGODB_URL, OPENAI_API_KEY, LABEL_READER_PROMPT
+from config import MONGODB_URL, OPENAI_API_KEY, load_label_reader_prompt
 from schemas import label_reader_schema
 
 # Initialize clients
@@ -37,7 +37,7 @@ async def extract_information(image_links: List[str]) -> Dict[str, Any]:
                 {
                     "role": "user",
                     "content": [
-                        {"type": "text", "text": LABEL_READER_PROMPT},
+                        {"type": "text", "text": load_label_reader_prompt()},
                         *image_message,
                     ],
                 },
