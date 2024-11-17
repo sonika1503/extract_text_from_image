@@ -1,15 +1,12 @@
 {
   "version": 2,
-  "functions": {
-    "api/data_extractor.py": {
-      "memory": 1024,
-      "maxDuration": 60
-    }
-  },
-  "routes": [
+  "builds": [
     {
-      "src": "/(.*)",
-      "dest": "api/data_extractor.py"
+      "use": "@vercel/python",
+      "config": {
+        "maxLambdaSize": "450mb"
+      }
     }
-  ]
+  ],
+  "rewrites": [{ "source": "/(.*)", "destination": "/api/data_extractor" }]
 }
