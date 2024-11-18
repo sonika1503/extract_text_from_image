@@ -19,7 +19,7 @@ app.add_middleware(
 )
 
 # Move configuration and constants to separate files
-from .config import MONGODB_URL, OPENAI_API_KEY, load_label_reader_prompt, LABEL_READER_PROMPT
+from .config import MONGODB_URL, OPENAI_API_KEY, LABEL_READER_PROMPT
 from .schemas import label_reader_schema
 
 # Initialize clients
