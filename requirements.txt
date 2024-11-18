@@ -1,4 +1,5 @@
+fastapi
+motor
 openai
-pymongo
-openpyxl
+python-dotenv
 uvicorn
