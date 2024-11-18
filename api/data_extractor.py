@@ -19,8 +19,8 @@ app.add_middleware(
 )
 
 # Move configuration and constants to separate files
-from config import MONGODB_URL, OPENAI_API_KEY, load_label_reader_prompt, LABEL_READER_PROMPT
-from schemas import label_reader_schema
+from .config import MONGODB_URL, OPENAI_API_KEY, load_label_reader_prompt, LABEL_READER_PROMPT
+from .schemas import label_reader_schema
 
 # Initialize clients
 openai_client = OpenAI(api_key=OPENAI_API_KEY)
